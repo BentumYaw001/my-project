@@ -21,7 +21,7 @@ export default {
       typography: (theme) => ({
         invert: {
           css: {
-            '--tw-prose-body': theme('colors.gray.300'),
+            '--tw-prose-body': theme('colors.gray.900'),
             '--tw-prose-headings': theme('colors.white'),
             '--tw-prose-lead': theme('colors.gray.400'),
             '--tw-prose-links': theme('colors.white'),
@@ -66,6 +66,7 @@ export default {
               fontStyle: 'normal', // Remove italics from blockquotes
             },
           },
+          
         },
       })
     },

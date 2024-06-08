@@ -10,7 +10,7 @@ function Preview({ markdown }) {
       <div className="bg-gray-900 p-3 text-gray-400 uppercase tracking-wider">
         Preview
       </div>
-      <div className="flex-grow p-1 prose prose-invert overflow-auto" dangerouslySetInnerHTML={{ __html: parsed }} />
+      <div className="flex-grow prose prose-invert overflow-auto p-6" dangerouslySetInnerHTML={{ __html: parsed }} />
     </div>
   );
 }

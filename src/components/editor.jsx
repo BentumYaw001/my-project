@@ -10,7 +10,7 @@ function Editor({ markdown, setMarkdown }) {
         Markdown
       </div>
       <textarea
-        className=".custom-scrollbar w-full h-full bg-gray-800 text-white outline-none"
+        className=".custom-scrollbar w-full h-full bg-gray-800 text-white outline-none p-6"
         onChange={(e) => setMarkdown(e.target.value)} 
       >
         {markdown}
