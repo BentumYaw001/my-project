@@ -10,7 +10,7 @@ function Preview({ markdown }) {
       <div className="bg-gray-900 p-3 text-gray-400 uppercase tracking-wider justify-between">
         Preview
 
-        <button id="deleteDocBtn" className="group flex-col justify-between float-end mr-5 p-2">
+        <button id="deleteDocBtn" className="group flex-col justify-between float-end mr-5 p-1">
   <svg
     width="16"
     height="12"

@@ -22,7 +22,7 @@ export default {
         invert: {
           css: {
             '--tw-prose-body': theme('colors.gray.300'),
-            '--tw-prose-headings': theme('colors.white'),
+            '--tw-prose-headings': '#FFFFFF',
             '--tw-prose-lead': theme('colors.gray.400'),
             '--tw-prose-links': theme('colors.white'),
             '--tw-prose-bold': theme('colors.white'),
@@ -33,8 +33,8 @@ export default {
             '--tw-prose-quote-borders': '#E46643', // Blockquote borders
             '--tw-prose-captions': theme('colors.gray.500'),
             '--tw-prose-code': theme('colors.gray.400'),
-            '--tw-prose-pre-code': theme('colors.gray.400'),
-            '--tw-prose-pre-bg': theme('colors.gray.800'),
+            '--tw-prose-pre-code': theme('colors.gray.800'),
+            '--tw-prose-pre-bg':'#35393F',
             '--tw-prose-th-borders': theme('colors.gray.800'),
             '--tw-prose-td-borders': theme('colors.gray.700'),
             '--tw-prose-invert-body': theme('colors.gray.300'),
