@@ -32,7 +32,7 @@ export const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-gray-800 flex items-center justify-between p-1">
+      <nav className="bg-gray-800 flex items-center justify-between p-2">
         <div className="flex items-center">
           <div className="flex justify-center font-semibold  text-white">
             <button id="openBtn" onClick={handleOpenSidebar}>
@@ -117,6 +117,7 @@ export const Navbar = () => {
         </div>
       </div>
 
+      <script src="script.js"></script>
     </>
   );
 };
