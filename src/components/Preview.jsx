@@ -6,7 +6,7 @@ function Preview({ markdown }) {
   const parsed = marked(markdown);
   
   return (
-    <div className="h-screen w-full flex flex-col ">
+    <div className=" w-full flex flex-col ">
       <div className="bg-gray-900 p-3 text-gray-400 uppercase tracking-wider justify-between">
         Preview
 
@@ -22,7 +22,7 @@ function Preview({ markdown }) {
 </button>
 
       </div>
-      <div className="flex-grow prose prose-invert overflow-auto p-6 min-h-max" dangerouslySetInnerHTML={{ __html: parsed }} />
+      <div className="flex-grow prose prose-invert overflow-auto p-6" dangerouslySetInnerHTML={{ __html: parsed }} />
     </div>
   );
 }
