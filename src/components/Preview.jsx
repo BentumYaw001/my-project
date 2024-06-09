@@ -7,8 +7,8 @@ function Preview({ markdown, toggleEditorVisibility, isEditorVisible }) {
   const parsed = marked(markdown);
 
   return (
-    <div className={`w-full flex flex-col ${isEditorVisible ? '' : 'h-full justify-center items-center'}`}>
-      <div className="bg-customblack1 p-3 text-gray-400 uppercase tracking-wider justify-between flex items-center">
+    <div className={`w-full flex flex-col ${isEditorVisible ? '' : 'h-full items-center'}`}>
+      <div className="bg-customblack1 p-3 text-gray-400 uppercase tracking-wider justify-between flex items-center w-full">
         Preview
         <button
           onClick={toggleEditorVisibility}
@@ -29,7 +29,7 @@ function Preview({ markdown, toggleEditorVisibility, isEditorVisible }) {
           </svg>
         </button>
       </div>
-      <div className={`flex-grow prose prose-invert overflow-auto p-6 ${isEditorVisible ? '' : 'h-full w-full'}`} dangerouslySetInnerHTML={{ __html: parsed }} />
+      <div className={`w-full flex-grow prose prose-invert p-6 ${isEditorVisible ? '' : 'w-full'}`} dangerouslySetInnerHTML={{ __html: parsed }} />
     </div>
   );
 }
