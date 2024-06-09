@@ -30,9 +30,23 @@ export const Navbar = () => {
     setIsSidebarOpen(false);
   };
 
+  const NewDocument =() =>{
+    alert('Document created.');
+  };
+
+  const SaveDocument =() =>{
+    alert('Document saved.');
+  };
+  
+  const DeleteDocument =() =>{
+    alert('Document deleted.');
+  };
+  
+
+
   return (
     <>
-      <nav className="bg-gray-800 flex items-center justify-between p-2">
+      <nav className="bg-customblack2 flex items-center justify-between p-2">
         <div className="flex items-center">
           <div className="flex justify-center font-semibold  text-white">
             <button id="openBtn" onClick={handleOpenSidebar}>
@@ -75,7 +89,10 @@ export const Navbar = () => {
           </div>
         </div>
         <div className="flex flex-row items-center">
-          <button id="deleteDocBtn" className="group">
+          <button 
+          onClick={DeleteDocument}
+          id="deleteDocBtn" 
+          className="group" >
             <svg
               width="18"
               height="20"
@@ -89,6 +106,7 @@ export const Navbar = () => {
 
 
           <button
+          onClick={SaveDocument}
             id="saveDocBtn"
             className="ml-2 items-center text-white flex flex-row bg-customRed p-2 rounded-sm mr-4 hover:bg-customredhover"
           >
@@ -102,7 +120,7 @@ export const Navbar = () => {
       </nav>
 
       <div className={`fixed inset-0 z-50 transition-transform transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} bg-gray-900 bg-opacity-75`}>
-        <div className="w-64 bg-gray-800 h-full p-4">
+        <div className="w-64 bg-mainblack h-full p-4">
           <div className="flex justify-end">
             <button id="closeBtn" onClick={handleCloseSidebar}>
               <img
@@ -113,7 +131,7 @@ export const Navbar = () => {
           </div>
           <div className="text-gray-500 text-lg font-roboto font-bold ml-4">My Documents</div>
 
-          <button className="p-2 bg-customRed rounded-sm  m-5 mt-7 font-semibold w-48 justify-center text-white font-5">+ New Documents</button>
+          <button className="p-2 bg-customRed rounded-sm  m-5 mt-7 font-semibold w-48 justify-center text-white font-5" onClick={NewDocument}>+ New Documents</button>
         </div>
       </div>
 

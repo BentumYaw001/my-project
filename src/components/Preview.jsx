@@ -7,7 +7,7 @@ function Preview({ markdown }) {
   
   return (
     <div className=" w-full flex flex-col ">
-      <div className="bg-gray-900 p-3 text-gray-400 uppercase tracking-wider justify-between">
+      <div className="bg-customblack1 p-3 text-gray-400 uppercase tracking-wider justify-between">
         Preview
 
         <button id="deleteDocBtn" className="group flex-col justify-between float-end mr-5 p-1">

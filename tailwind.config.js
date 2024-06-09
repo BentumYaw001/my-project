@@ -11,8 +11,8 @@ export default {
         customredhover:'#F39765',
         mainblack:'#151619',
         customblack1:'#1D1F22',
-        customblack2:'#2B2D3',
-        customblack3:'#35393F',
+        customblack2:'#2B2D31',
+        customblack3:'#35393F', 
       },
       fontFamily: {
         'roboto': ['Roboto', 'sans-serif'],
@@ -33,7 +33,7 @@ export default {
             '--tw-prose-quote-borders': '#E46643', // Blockquote borders
             '--tw-prose-captions': theme('colors.gray.500'),
             '--tw-prose-code': theme('colors.gray.400'),
-            '--tw-prose-pre-code': theme('colors.gray.800'),
+            '--tw-prose-pre-code': '#E4E4E4',
             '--tw-prose-pre-bg':'#35393F',
             '--tw-prose-th-borders': theme('colors.gray.800'),
             '--tw-prose-td-borders': theme('colors.gray.700'),
