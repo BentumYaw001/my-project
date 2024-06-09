@@ -45,7 +45,7 @@ export const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-customblack2 flex items-center justify-between p-2">
+      <nav className="bg-customblack2 flex items-center justify-between">
         <div className="flex items-center">
           <div className="flex justify-center font-semibold  text-white">
             <button id="openBtn" onClick={handleOpenSidebar}>
