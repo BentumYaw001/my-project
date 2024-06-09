@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-
 export const Navbar = () => {
   const [documentName, setDocumentName] = useState("welcome.md");
   const [isEditing, setIsEditing] = useState(false);
