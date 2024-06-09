@@ -1,4 +1,4 @@
-<button id="deleteDocBtn" class="group">
+<button id="ShowPreview" class="group">
   <svg
     width="16"
     height="15"
