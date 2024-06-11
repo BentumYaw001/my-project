@@ -1,11 +1,11 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
-// import Records from "./data.json";
 
-export const Navbar = () => {
+const Navbar = ({ documents, loadNewDocument, loadDocumentContent }) => {
   const [documentName, setDocumentName] = useState("welcome.md");
   const [isEditing, setIsEditing] = useState(false);
   const [tempName, setTempName] = useState(documentName);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State to manage sidebar
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const handleInputChange = (e) => {
     setTempName(e.target.value);
@@ -30,19 +30,17 @@ export const Navbar = () => {
     setIsSidebarOpen(false);
   };
 
-  const NewDocument =() =>{
-    alert('Document created.');
+  const NewDocument = () => {
+    loadNewDocument();
   };
 
-  const SaveDocument =() =>{
+  const SaveDocument = () => {
     alert('Document saved.');
   };
-  
-  const DeleteDocument =() =>{
+
+  const DeleteDocument = () => {
     alert('Document deleted.');
   };
-  
-
 
   return (
     <>
@@ -56,10 +54,8 @@ export const Navbar = () => {
                 alt="Menu Icon" />
             </button>
             <div className="flex justify-center mt-4"> MARKDOWN</div>
-
           </div>
           <span className="border-l border-white mx-4 h-10" />
-
           <div className="flex flex-row justify-center ml-5">
             <img
               src="/src/assets/icon-document.svg"
@@ -89,10 +85,10 @@ export const Navbar = () => {
           </div>
         </div>
         <div className="flex flex-row items-center">
-          <button 
-          onClick={DeleteDocument}
-          id="deleteDocBtn" 
-          className="group" >
+          <button
+            onClick={DeleteDocument}
+            id="deleteDocBtn"
+            className="group" >
             <svg
               width="18"
               height="20"
@@ -102,11 +98,8 @@ export const Navbar = () => {
               <path d="M7 16a1 1 0 0 0 1-1V9a1 1 0 1 0-2 0v6a1 1 0 0 0 1 1ZM17 4h-4V3a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3v1H1a1 1 0 1 0 0 2h1v11a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V6h1a1 1 0 0 0 0-2ZM7 3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v1H7V3Zm7 14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6h10v11Zm-3-1a1 1 0 0 0 1-1V9a1 1 0 0 0-2 0v6a1 1 0 0 0 1 1Z" />
             </svg>
           </button>
-
-
-
           <button
-          onClick={SaveDocument}
+            onClick={SaveDocument}
             id="saveDocBtn"
             className="ml-2 items-center text-white flex flex-row bg-customRed p-2 rounded-sm mr-4 hover:bg-customredhover"
           >
@@ -118,7 +111,6 @@ export const Navbar = () => {
           </button>
         </div>
       </nav>
-
       <div className={`fixed inset-0 z-50 transition-transform transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} bg-gray-900 bg-opacity-75`}>
         <div className="w-64 bg-mainblack h-full p-4">
           <div className="flex justify-end">
@@ -130,12 +122,21 @@ export const Navbar = () => {
             </button>
           </div>
           <div className="text-gray-500 text-lg font-roboto font-bold ml-4">My Documents</div>
-
-          <button className="p-2 bg-customRed rounded-sm  m-5 mt-7 font-semibold w-48 justify-center text-white font-5" onClick={NewDocument}>+ New Documents</button>
+          <button className="p-2 bg-customRed rounded-sm m-5 mt-7 font-semibold w-48 justify-center text-white" onClick={NewDocument}>+ New Document</button>
+          <ul className="mt-4 text-white">
+            {documents.map((doc) => (
+              <li key={doc.id} className="cursor-pointer hover:bg-gray-700 p-2" onClick={() => loadDocumentContent(doc.id)}>
+                <div className="flex flex-col">
+                  <span>{doc.createdAt}</span>
+                  <span>{doc.name}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
-
-      <script src="script.js"></script>
     </>
   );
 };
+
+export default Navbar;
