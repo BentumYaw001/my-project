@@ -14,7 +14,7 @@ function App() {
     if (document) {
       setMarkdown(document.content);
     }
-  }, [documents]);
+  }, []);
 
   const toggleEditorVisibility = () => {
     setIsEditorVisible(!isEditorVisible);
