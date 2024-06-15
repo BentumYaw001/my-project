@@ -1,19 +1,28 @@
+
 import { useState, useEffect } from "react";
-import Records from "./components/data.json";
+import axios from "axios";
 import Preview from "./components/Preview";
 import Editor from "./components/editor";
 import Navbar from "./components/navbar";
 
+
 function App() {
-  const [documents, setDocuments] = useState(Records);
+  const [documents, setDocuments] = useState([]);
   const [markdown, setMarkdown] = useState('');
   const [isEditorVisible, setIsEditorVisible] = useState(true);
 
   useEffect(() => {
-    const document = documents.find(doc => doc.id === 2);
-    if (document) {
-      setMarkdown(document.content);
-    }
+    axios.get('http://localhost:3001/documents')
+      .then(response => {
+        setDocuments(response.data);
+        const document = response.data.find(doc => doc.id === 2);
+        if (document) {
+          setMarkdown(document.content);
+        }
+      })
+      .catch(error => {
+        console.error('Error loading documents:', error);
+      });
   }, []);
 
   const toggleEditorVisibility = () => {
@@ -40,6 +49,14 @@ function App() {
     };
     setDocuments([...documents, newDocument]);
     setMarkdown(newDocument.content);
+
+    axios.post('http://localhost:3001/documents', newDocument)
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.error('Error saving new document:', error);
+      });
   };
 
   const loadDocumentContent = (id) => {
