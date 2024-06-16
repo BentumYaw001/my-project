@@ -1,7 +1,7 @@
-/* eslint-disable react/prop-types */
 import { useState } from "react";
+import PropTypes from 'prop-types';
 
-const Navbar = ({ documents, loadNewDocument, loadDocumentContent }) => {
+const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument }) => {
   const [documentName, setDocumentName] = useState("welcome.md");
   const [isEditing, setIsEditing] = useState(false);
   const [tempName, setTempName] = useState(documentName);
@@ -35,7 +35,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent }) => {
   };
 
   const SaveDocument = () => {
-    alert('Document saved.');
+    saveDocument();
   };
 
   const DeleteDocument = () => {
@@ -117,26 +117,48 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent }) => {
             <button id="closeBtn" onClick={handleCloseSidebar}>
               <img
                 src="/src/assets/icon-close.svg"
-                className="flex justify-between"
+                className="hover:bg-customRed py-5 px-4"
                 alt="Close Icon" />
             </button>
           </div>
-          <div className="text-gray-500 text-lg font-roboto font-bold ml-4">My Documents</div>
-          <button className="p-2 bg-customRed rounded-sm m-5 mt-7 font-semibold w-48 justify-center text-white" onClick={NewDocument}>+ New Document</button>
-          <ul className="mt-4 text-white">
-            {documents.map((doc) => (
-              <li key={doc.id} className="cursor-pointer hover:bg-gray-700 p-2" onClick={() => loadDocumentContent(doc.id)}>
-                <div className="flex flex-col">
-                  <span>{doc.createdAt}</span>
-                  <span>{doc.name}</span>
-                </div>
-              </li>
-            ))}
-          </ul>
+          <div>
+            <button
+              id="newDocBtn"
+              className="text-white flex flex-row items-center bg-customRed p-2 rounded-sm mb-4 hover:bg-customredhover"
+              onClick={NewDocument}
+            >
+              <img
+                src="/src/assets/icon-document.svg"
+                className="h-6 w-5 ml-2 mr-2"
+                alt="New Document Icon" />
+              New Document
+            </button>
+            <ul className="text-white">
+              {documents.map((document) => (
+                <li
+                  key={document.id}
+                  className="p-2 hover:bg-customRed cursor-pointer"
+                  onClick={() => {
+                    loadDocumentContent(document.id);
+                    handleCloseSidebar();
+                  }}
+                >
+                  {document.name}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </>
   );
+};
+
+Navbar.propTypes = {
+  documents: PropTypes.array.isRequired,
+  loadNewDocument: PropTypes.func.isRequired,
+  loadDocumentContent: PropTypes.func.isRequired,
+  saveDocument: PropTypes.func.isRequired,
 };
 
 export default Navbar;

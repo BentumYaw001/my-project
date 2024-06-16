@@ -1,13 +1,12 @@
-
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Preview from "./components/Preview";
 import Editor from "./components/editor";
 import Navbar from "./components/navbar";
 
-
 function App() {
   const [documents, setDocuments] = useState([]);
+  const [currentDocument, setCurrentDocument] = useState(null);
   const [markdown, setMarkdown] = useState('');
   const [isEditorVisible, setIsEditorVisible] = useState(true);
 
@@ -17,6 +16,7 @@ function App() {
         setDocuments(response.data);
         const document = response.data.find(doc => doc.id === 2);
         if (document) {
+          setCurrentDocument(document);
           setMarkdown(document.content);
         }
       })
@@ -48,6 +48,7 @@ function App() {
       content: ""
     };
     setDocuments([...documents, newDocument]);
+    setCurrentDocument(newDocument);
     setMarkdown(newDocument.content);
 
     axios.post('http://localhost:3001/documents', newDocument)
@@ -62,7 +63,22 @@ function App() {
   const loadDocumentContent = (id) => {
     const document = documents.find(doc => doc.id === id);
     if (document) {
+      setCurrentDocument(document);
       setMarkdown(document.content);
+    }
+  };
+
+  const saveDocument = () => {
+    if (currentDocument) {
+      const updatedDocument = { ...currentDocument, content: markdown };
+      axios.put(`http://localhost:3001/documents/${currentDocument.id}`, updatedDocument)
+        .then(response => {
+          console.log(response.data);
+          setDocuments(documents.map(doc => doc.id === currentDocument.id ? updatedDocument : doc));
+        })
+        .catch(error => {
+          console.error('Error updating document:', error);
+        });
     }
   };
 
@@ -72,6 +88,7 @@ function App() {
         documents={documents} 
         loadNewDocument={loadNewDocument} 
         loadDocumentContent={loadDocumentContent} 
+        saveDocument={saveDocument}
       />
       <main className={`w-screen h-screen ${isEditorVisible ? 'grid grid-cols-2' : 'flex justify-center items-center'} bg-mainblack`}>
         {isEditorVisible && <Editor markdown={markdown} setMarkdown={setMarkdown} />}
