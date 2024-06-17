@@ -65,7 +65,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
             <img
               src="/src/assets/icon-document.svg"
               alt="Document Icon"
-              className="h-8 w-5 my-auto" />
+              className="h-5 w-4 my-auto" />
             <div className="text-gray-400 text-lg font-semibold items-center ml-5 flex-col justify-center">
               <p>Document Name</p>
               {isEditing ? (
