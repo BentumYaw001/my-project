@@ -99,6 +99,34 @@ app.delete('/documents/:id', (req, res) => {
   });
 });
 
+// Endpoint to update the document name
+app.put('/documents/:id/name', (req, res) => {
+  const documentId = parseInt(req.params.id, 10);
+  const newName = req.body.name;
+
+  fs.readFile(DATA_FILE, 'utf8', (err, data) => {
+    if (err) {
+      return res.status(500).send('Error reading data file');
+    }
+
+    let documents = JSON.parse(data);
+    const documentIndex = documents.findIndex(doc => doc.id === documentId);
+    if (documentIndex === -1) {
+      return res.status(404).send('Document not found');
+    }
+
+    documents[documentIndex].name = newName;
+
+    fs.writeFile(DATA_FILE, JSON.stringify(documents, null, 4), (err) => {
+      if (err) {
+        return res.status(500).send('Error writing data file');
+      }
+      res.send('Document name updated successfully');
+    });
+  });
+});
+
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

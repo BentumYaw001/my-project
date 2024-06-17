@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PropTypes from 'prop-types';
 
-const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,deleteDocument }) => {
+const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument, deleteDocument }) => {
   const [documentName, setDocumentName] = useState("welcome.md");
   const [isEditing, setIsEditing] = useState(false);
   const [tempName, setTempName] = useState(documentName);
@@ -11,16 +11,38 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
     setTempName(e.target.value);
   };
 
-  const handleSave = () => {
-    if (!tempName.endsWith(".md")) {
-      const newName = tempName + ".md";
-      setDocumentName(newName);
-      setIsEditing(false);
-    } else {
-      setDocumentName(tempName);
-      setIsEditing(false);
+  const updateDocumentName = async (id, newName) => {
+    try {
+      const response = await fetch(`http://localhost:3001/documents/${id}/name`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name: newName }),
+      });
+      if (!response.ok) {
+        throw new Error('Failed to update document name');
+      }
+      console.log('Document name updated successfully');
+    } catch (error) {
+      console.error('Error updating document name:', error);
     }
   };
+  
+
+  const handleSave = () => {
+    let newName = tempName;
+    if (!newName.endsWith(".md")) {
+      newName += ".md";
+    }
+    setDocumentName(newName);
+    setIsEditing(false);
+    const currentDocument = documents.find(doc => doc.name === documentName);
+    if (currentDocument) {
+      updateDocumentName(currentDocument.id, newName); // Update the document name in the data.json file
+    }
+  };
+  
 
   const handleOpenSidebar = () => {
     setIsSidebarOpen(true);
@@ -43,8 +65,6 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
     if (window.confirm("Are you sure you want to delete this document?")) {
       deleteDocument();
     }
-    
-    
   };
 
   return (
@@ -144,8 +164,9 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
                   key={document.id}
                   className="p-2 cursor-pointer"
                   onClick={() => {
-                    
                     loadDocumentContent(document.id);
+                    setDocumentName(document.name); // Update the document name when loaded
+                    setTempName(document.name); // Ensure tempName is also updated
                     handleCloseSidebar();
                   }}
                 >
@@ -182,6 +203,7 @@ Navbar.propTypes = {
   loadNewDocument: PropTypes.func.isRequired,
   loadDocumentContent: PropTypes.func.isRequired,
   saveDocument: PropTypes.func.isRequired,
+  updateDocumentName: PropTypes.func.isRequired, // Add the new prop type
   deleteDocument: PropTypes.func.isRequired, 
 };
 
