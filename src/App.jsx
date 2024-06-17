@@ -25,28 +25,7 @@ function App() {
       });
   }, []);
 
-  const deleteDocument = () => {
-    if (currentDocument) {
-      axios.delete(`http://localhost:3001/documents/${currentDocument.id}`)
-        .then(response => {
-          console.log(response.data);
-          // Remove the document from the state
-          const updatedDocuments = documents.filter(doc => doc.id !== currentDocument.id);
-          setDocuments(updatedDocuments);
-  
-          // Load the first document if available, or create a new one if the list is empty
-          if (updatedDocuments.length > 0) {
-            setCurrentDocument(updatedDocuments[0]);
-            setMarkdown(updatedDocuments[0].content);
-          } else {
-            loadNewDocument();
-          }
-        })
-        .catch(error => {
-          console.error('Error deleting document:', error);
-        });
-    }
-  };
+ 
   
 
   const toggleEditorVisibility = () => {
@@ -102,6 +81,27 @@ function App() {
         })
         .catch(error => {
           console.error('Error updating document:', error);
+        });
+    }
+  };
+
+  const deleteDocument = () => {
+    if (currentDocument) {
+      axios.delete(`http://localhost:3001/documents/${currentDocument.id}`)
+        .then(response => {
+          console.log(response.data);
+          // Remove the document from the state
+          const updatedDocuments = documents.filter(doc => doc.id !== currentDocument.id);
+          setDocuments(updatedDocuments);
+  
+          // Load the first document if available, or create a new one if the list is empty
+          if (updatedDocuments.length > 0) {
+            setCurrentDocument(updatedDocuments[0]);
+            setMarkdown(updatedDocuments[0].content);
+          } 
+        })
+        .catch(error => {
+          console.error('Error deleting document:', error);
         });
     }
   };
