@@ -123,17 +123,18 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument 
             </button>
           </div>
           <div>
-            <div className="flew flex-row items-center text-white p-3 ml-2 mb-3">MY DOCUMENTS
+            <div className="flew flex-row items-center font-semibold text-customgray mb-8">MY DOCUMENTS
             </div>
             <button
               id="newDocBtn"
-              className="text-white flex flex-row items-center bg-customRed p-2 px-8 rounded-sm mb-4 ml-5 hover:bg-customredhover"
+              className="text-white flex flex-row items-center font-semibold bg-customRed py-2 px-8 rounded-sm mb-4 ml-2 hover:bg-customredhover"
               onClick={NewDocument}
             >
               
              + New Document
             </button>
-            <ul className="text-white">
+
+            <ul className="text-white text-between-xs-sm items-center">
               {documents.map((document) => (
                 <li
                   key={document.id}
@@ -144,13 +145,16 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument 
                     handleCloseSidebar();
                   }}
                 >
-                  <div className="flex flew-col items-center">
+                  <div className="flex flew-col items-center overflow-y-auto">
                   <img
                 src="/src/assets/icon-document.svg"
-                className="h-4 w-3 ml-1 mr-2"
+                className="h-4 w-3 mr-2"
                 alt="New Document Icon" />
                 <div className="flex flex-col justify-between">
-                {document.createdAt}
+                  <div className="flex text-customgray">
+                  {document.createdAt}
+                  </div>
+                
                 <div className=" hover:text-customRed">
                 {document.name}
                 </div>

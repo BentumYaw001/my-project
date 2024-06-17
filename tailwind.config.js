@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontSize: {
+        'between-xs-sm': '0.8rem', 
+      },
       colors: {
         customRed: '#E46643',
         customredhover:'#F39765',
@@ -13,6 +16,7 @@ export default {
         customblack1:'#1D1F22',
         customblack2:'#2B2D31',
         customblack3:'#35393F', 
+        customgray:"#7C8187"
       },
       fontFamily: {
         'roboto': ['Roboto', 'sans-serif'],
