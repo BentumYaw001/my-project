@@ -36,6 +36,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument 
 
   const SaveDocument = () => {
     saveDocument();
+    alert('Document saved.');
   };
 
   const DeleteDocument = () => {
@@ -117,33 +118,47 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument 
             <button id="closeBtn" onClick={handleCloseSidebar}>
               <img
                 src="/src/assets/icon-close.svg"
-                className="hover:bg-customRed py-5 px-4"
+                className=""
                 alt="Close Icon" />
             </button>
           </div>
           <div>
+            <div className="flew flex-row items-center text-white p-3 ml-2 mb-3">MY DOCUMENTS
+            </div>
             <button
               id="newDocBtn"
-              className="text-white flex flex-row items-center bg-customRed p-2 rounded-sm mb-4 hover:bg-customredhover"
+              className="text-white flex flex-row items-center bg-customRed p-2 px-8 rounded-sm mb-4 ml-5 hover:bg-customredhover"
               onClick={NewDocument}
             >
-              <img
-                src="/src/assets/icon-document.svg"
-                className="h-6 w-5 ml-2 mr-2"
-                alt="New Document Icon" />
-              New Document
+              
+             + New Document
             </button>
             <ul className="text-white">
               {documents.map((document) => (
                 <li
                   key={document.id}
-                  className="p-2 hover:bg-customRed cursor-pointer"
+                  className="p-2 cursor-pointer"
                   onClick={() => {
+                    
                     loadDocumentContent(document.id);
                     handleCloseSidebar();
                   }}
                 >
-                  {document.name}
+                  <div className="flex flew-col items-center">
+                  <img
+                src="/src/assets/icon-document.svg"
+                className="h-4 w-3 ml-1 mr-2"
+                alt="New Document Icon" />
+                <div className="flex flex-col justify-between">
+                {document.createdAt}
+                <div className=" hover:text-customRed">
+                {document.name}
+                </div>
+               
+                </div>
+                
+                  </div>
+                
                 </li>
               ))}
             </ul>
