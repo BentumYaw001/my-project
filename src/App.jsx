@@ -25,6 +25,30 @@ function App() {
       });
   }, []);
 
+  const deleteDocument = () => {
+    if (currentDocument) {
+      axios.delete(`http://localhost:3001/documents/${currentDocument.id}`)
+        .then(response => {
+          console.log(response.data);
+          // Remove the document from the state
+          const updatedDocuments = documents.filter(doc => doc.id !== currentDocument.id);
+          setDocuments(updatedDocuments);
+  
+          // Load the first document if available, or create a new one if the list is empty
+          if (updatedDocuments.length > 0) {
+            setCurrentDocument(updatedDocuments[0]);
+            setMarkdown(updatedDocuments[0].content);
+          } else {
+            loadNewDocument();
+          }
+        })
+        .catch(error => {
+          console.error('Error deleting document:', error);
+        });
+    }
+  };
+  
+
   const toggleEditorVisibility = () => {
     setIsEditorVisible(!isEditorVisible);
   };
@@ -89,6 +113,7 @@ function App() {
         loadNewDocument={loadNewDocument} 
         loadDocumentContent={loadDocumentContent} 
         saveDocument={saveDocument}
+        deleteDocument={deleteDocument}
       />
       <main className={`w-screen h-screen ${isEditorVisible ? 'grid grid-cols-2' : 'flex justify-center items-center'} bg-mainblack`}>
         {isEditorVisible && <Editor markdown={markdown} setMarkdown={setMarkdown} />}

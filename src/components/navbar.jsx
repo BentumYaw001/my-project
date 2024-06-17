@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PropTypes from 'prop-types';
 
-const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument }) => {
+const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,deleteDocument }) => {
   const [documentName, setDocumentName] = useState("welcome.md");
   const [isEditing, setIsEditing] = useState(false);
   const [tempName, setTempName] = useState(documentName);
@@ -40,7 +40,11 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument 
   };
 
   const DeleteDocument = () => {
-    alert('Document deleted.');
+    if (window.confirm("Are you sure you want to delete this document?")) {
+      deleteDocument();
+    }
+    
+    
   };
 
   return (
@@ -178,6 +182,7 @@ Navbar.propTypes = {
   loadNewDocument: PropTypes.func.isRequired,
   loadDocumentContent: PropTypes.func.isRequired,
   saveDocument: PropTypes.func.isRequired,
+  deleteDocument: PropTypes.func.isRequired, 
 };
 
 export default Navbar;
