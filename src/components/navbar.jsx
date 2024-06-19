@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PropTypes from 'prop-types';
 
-const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument, deleteDocument }) => {
+const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument, deleteDocument, toggleTheme, isDarkTheme }) => {
   const [documentName, setDocumentName] = useState("welcome.md");
   const [isEditing, setIsEditing] = useState(false);
   const [tempName, setTempName] = useState(documentName);
@@ -134,6 +134,13 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
               alt="Save Icon" />
             Save Changes
           </button>
+          <button
+            onClick={toggleTheme} // Add theme toggle button
+            id="themeToggleBtn"
+            className="ml-2 items-center text-white flex flex-row bg-customRed p-2 rounded-sm mr-4 hover:bg-customredhover"
+          >
+            {isDarkTheme ? 'Light Theme' : 'Dark Theme'}
+          </button>
         </div>
       </nav>
       <div className={`fixed inset-0 z-50 transition-transform transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} bg-gray-900 bg-opacity-75`}>
@@ -203,8 +210,9 @@ Navbar.propTypes = {
   loadNewDocument: PropTypes.func.isRequired,
   loadDocumentContent: PropTypes.func.isRequired,
   saveDocument: PropTypes.func.isRequired,
-  updateDocumentName: PropTypes.func.isRequired, 
   deleteDocument: PropTypes.func.isRequired, 
+  toggleTheme: PropTypes.func.isRequired, // Add propTypes for toggleTheme
+  isDarkTheme: PropTypes.bool.isRequired // Add propTypes for isDarkTheme
 };
 
 export default Navbar;

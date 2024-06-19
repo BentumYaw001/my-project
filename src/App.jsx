@@ -9,6 +9,7 @@ function App() {
   const [currentDocument, setCurrentDocument] = useState(null);
   const [markdown, setMarkdown] = useState('');
   const [isEditorVisible, setIsEditorVisible] = useState(true);
+  const [isDarkTheme, setIsDarkTheme] = useState(true); // Add theme state
 
   useEffect(() => {
     axios.get('http://localhost:3001/documents')
@@ -24,9 +25,6 @@ function App() {
         console.error('Error loading documents:', error);
       });
   }, []);
-
- 
-  
 
   const toggleEditorVisibility = () => {
     setIsEditorVisible(!isEditorVisible);
@@ -106,6 +104,10 @@ function App() {
     }
   };
 
+  const toggleTheme = () => {
+    setIsDarkTheme(!isDarkTheme);
+  };
+
   return (
     <div>
       <Navbar 
@@ -114,10 +116,12 @@ function App() {
         loadDocumentContent={loadDocumentContent} 
         saveDocument={saveDocument}
         deleteDocument={deleteDocument}
+        toggleTheme={toggleTheme} // Pass toggleTheme to Navbar
+        isDarkTheme={isDarkTheme} // Pass isDarkTheme to Navbar
       />
-      <main className={`w-screen h-screen ${isEditorVisible ? 'grid grid-cols-2' : 'flex justify-center items-center'} bg-mainblack`}>
-        {isEditorVisible && <Editor markdown={markdown} setMarkdown={setMarkdown} />}
-        <Preview markdown={markdown} toggleEditorVisibility={toggleEditorVisibility} isEditorVisible={isEditorVisible} />
+      <main className={`w-screen h-screen ${isEditorVisible ? 'grid grid-cols-2' : 'flex justify-center items-center'} ${isDarkTheme ? 'bg-mainblack' : 'bg-white'}`}>
+        {isEditorVisible && <Editor markdown={markdown} setMarkdown={setMarkdown} isDarkTheme={isDarkTheme} />} {/* Pass isDarkTheme to Editor */}
+        <Preview markdown={markdown} toggleEditorVisibility={toggleEditorVisibility} isEditorVisible={isEditorVisible} isDarkTheme={isDarkTheme} /> {/* Pass isDarkTheme to Preview */}
       </main>
     </div>
   );
