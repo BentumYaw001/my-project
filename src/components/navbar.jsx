@@ -198,10 +198,13 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
             <button
             onClick={toggleTheme} // Add theme toggle button
             id="themeToggleBtn"
-            className="ml-2 items-center text-white flex flex-row bg-customRed p-2 rounded-sm mr-4 hover:bg-customredhover"
+            className="ml-2 items-center text-white flex flex-row p-2 rounded-sm mr-4"
+            
           >
-            {isDarkTheme ? 'Light Theme' : 'Dark Theme'}
-          </button>
+            <img src="/src/assets/dark-mode.svg" alt=""/>
+            {isDarkTheme ? <img src="/src/assets/toggle-off.svg" alt=""/> : <img src="/src/assets/toggle-on.svg" alt=""/>}
+            <img src="/src/assets/light-mode.svg" alt=""/>
+          </button> 
           </div>
         </div>
       </div>
