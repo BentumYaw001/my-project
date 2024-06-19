@@ -181,7 +181,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
                   </div>
                 
                 <div className=" hover:text-customRed">
-                {document.name}
+                {document.name}  
                 </div>
                
                 </div>
@@ -203,7 +203,7 @@ Navbar.propTypes = {
   loadNewDocument: PropTypes.func.isRequired,
   loadDocumentContent: PropTypes.func.isRequired,
   saveDocument: PropTypes.func.isRequired,
-  updateDocumentName: PropTypes.func.isRequired, // Add the new prop type
+  updateDocumentName: PropTypes.func.isRequired, 
   deleteDocument: PropTypes.func.isRequired, 
 };
 
