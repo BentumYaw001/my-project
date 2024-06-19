@@ -28,7 +28,6 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
       console.error('Error updating document name:', error);
     }
   };
-  
 
   const handleSave = () => {
     let newName = tempName;
@@ -42,7 +41,6 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
       updateDocumentName(currentDocument.id, newName); // Update the document name in the data.json file
     }
   };
-  
 
   const handleOpenSidebar = () => {
     setIsSidebarOpen(true);
@@ -134,32 +132,28 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
               alt="Save Icon" />
             Save Changes
           </button>
-        
         </div>
       </nav>
       <div className={`fixed inset-0 z-50 transition-transform transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} bg-gray-900 bg-opacity-75`}>
-        <div className="w-64 bg-mainblack h-full p-4">
-          <div className="flex justify-end">
-            <button id="closeBtn" onClick={handleCloseSidebar}>
-              <img
-                src="/src/assets/icon-close.svg"
-                className=""
-                alt="Close Icon" />
-            </button>
-          </div>
+        <div className="w-64 bg-mainblack h-full p-4 flex flex-col justify-between">
           <div>
-            <div className="flew flex-row items-center font-semibold text-customgray mb-8">MY DOCUMENTS
+            <div className="flex justify-end">
+              <button id="closeBtn" onClick={handleCloseSidebar}>
+                <img
+                  src="/src/assets/icon-close.svg"
+                  className=""
+                  alt="Close Icon" />
+              </button>
             </div>
+            <div className="flex flex-row items-center font-semibold text-customgray mb-8">MY DOCUMENTS</div>
             <button
               id="newDocBtn"
               className="text-white flex flex-row items-center font-semibold bg-customRed py-2 px-8 rounded-sm mb-4 ml-2 hover:bg-customredhover"
               onClick={NewDocument}
             >
-              
-             + New Document
+              + New Document
             </button>
-
-            <ul className="text-white text-between-xs-sm items-center">
+            <ul className="text-white text-between-xs-sm items-center overflow-y-auto">
               {documents.map((document) => (
                 <li
                   key={document.id}
@@ -171,40 +165,38 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
                     handleCloseSidebar();
                   }}
                 >
-                  <div className="flex flew-col items-center overflow-y-auto">
-                  <img
-                src="/src/assets/icon-document.svg"
-                className="h-4 w-3 mr-2"
-                alt="New Document Icon" />
-                <div className="flex flex-col justify-between">
-                  <div className="flex text-customgray">
-                  {document.createdAt}
+                  <div className="flex items-center">
+                    <img
+                      src="/src/assets/icon-document.svg"
+                      className="h-4 w-3 mr-2"
+                      alt="New Document Icon" />
+                    <div className="flex flex-col">
+                      <div className="flex text-customgray">
+                        {document.createdAt}
+                      </div>
+                      <div className="hover:text-customRed">
+                        {document.name}
+                      </div>
+                    </div>
                   </div>
-                
-                <div className=" hover:text-customRed">
-                {document.name}  
-                </div>
-               
-                 </div>
-                
-                  </div>
-                
                 </li>
-
-                
               ))}
             </ul>
-
+          </div>
+          <div className="flex justify-center mb-4">
             <button
-            onClick={toggleTheme} // Add theme toggle button
-            id="themeToggleBtn"
-            className="ml-2 items-center text-white flex flex-row p-2 rounded-sm mr-4"
-            
-          >
-            <img src="/src/assets/dark-mode.svg" alt=""/>
-            {isDarkTheme ? <img src="/src/assets/toggle-off.svg" alt=""/> : <img src="/src/assets/toggle-on.svg" alt=""/>}
-            <img src="/src/assets/light-mode.svg" alt=""/>
-          </button> 
+              onClick={toggleTheme}
+              id="themeToggleBtn"
+              className="text-white flex items-center p-2 rounded-sm"
+            >
+              <img src="/src/assets/dark-mode.svg" alt="Dark Mode Icon" />
+              {isDarkTheme ? (
+                <img src="/src/assets/toggle-off.svg" alt="Toggle Off Icon" />
+              ) : (
+                <img src="/src/assets/toggle-on.svg" alt="Toggle On Icon" />
+              )}
+              <img src="/src/assets/light-mode.svg" alt="Light Mode Icon" />
+            </button>
           </div>
         </div>
       </div>
@@ -217,9 +209,9 @@ Navbar.propTypes = {
   loadNewDocument: PropTypes.func.isRequired,
   loadDocumentContent: PropTypes.func.isRequired,
   saveDocument: PropTypes.func.isRequired,
-  deleteDocument: PropTypes.func.isRequired, 
-  toggleTheme: PropTypes.func.isRequired, // Add propTypes for toggleTheme
-  isDarkTheme: PropTypes.bool.isRequired // Add propTypes for isDarkTheme
+  deleteDocument: PropTypes.func.isRequired,
+  toggleTheme: PropTypes.func.isRequired,
+  isDarkTheme: PropTypes.bool.isRequired,
 };
 
 export default Navbar;
