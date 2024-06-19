@@ -9,7 +9,7 @@ function App() {
   const [currentDocument, setCurrentDocument] = useState(null);
   const [markdown, setMarkdown] = useState('');
   const [isEditorVisible, setIsEditorVisible] = useState(true);
-  const [isDarkTheme, setIsDarkTheme] = useState(true); // Add theme state
+  const [isDarkTheme, setIsDarkTheme] = useState(true);
 
   useEffect(() => {
     axios.get('http://localhost:3001/documents')
@@ -25,6 +25,16 @@ function App() {
         console.error('Error loading documents:', error);
       });
   }, []);
+
+  useEffect(() => {
+    if (isDarkTheme) {
+      document.body.classList.add('dark-theme');
+      document.body.classList.remove('light-theme');
+    } else {
+      document.body.classList.add('light-theme');
+      document.body.classList.remove('dark-theme');
+    }
+  }, [isDarkTheme]);
 
   const toggleEditorVisibility = () => {
     setIsEditorVisible(!isEditorVisible);
@@ -88,15 +98,13 @@ function App() {
       axios.delete(`http://localhost:3001/documents/${currentDocument.id}`)
         .then(response => {
           console.log(response.data);
-          // Remove the document from the state
           const updatedDocuments = documents.filter(doc => doc.id !== currentDocument.id);
           setDocuments(updatedDocuments);
-  
-          // Load the first document if available, or create a new one if the list is empty
+
           if (updatedDocuments.length > 0) {
             setCurrentDocument(updatedDocuments[0]);
             setMarkdown(updatedDocuments[0].content);
-          } 
+          }
         })
         .catch(error => {
           console.error('Error deleting document:', error);
@@ -116,12 +124,12 @@ function App() {
         loadDocumentContent={loadDocumentContent} 
         saveDocument={saveDocument}
         deleteDocument={deleteDocument}
-        toggleTheme={toggleTheme} // Pass toggleTheme to Navbar
-        isDarkTheme={isDarkTheme} // Pass isDarkTheme to Navbar
+        toggleTheme={toggleTheme}
+        isDarkTheme={isDarkTheme}
       />
       <main className={`w-screen h-screen ${isEditorVisible ? 'grid grid-cols-2' : 'flex justify-center items-center'} ${isDarkTheme ? 'bg-mainblack' : 'bg-white'}`}>
-        {isEditorVisible && <Editor markdown={markdown} setMarkdown={setMarkdown} isDarkTheme={isDarkTheme} />} {/* Pass isDarkTheme to Editor */}
-        <Preview markdown={markdown} toggleEditorVisibility={toggleEditorVisibility} isEditorVisible={isEditorVisible} isDarkTheme={isDarkTheme} /> {/* Pass isDarkTheme to Preview */}
+        {isEditorVisible && <Editor markdown={markdown} setMarkdown={setMarkdown} isDarkTheme={isDarkTheme} />}
+        <Preview markdown={markdown} toggleEditorVisibility={toggleEditorVisibility} isEditorVisible={isEditorVisible} isDarkTheme={isDarkTheme} />
       </main>
     </div>
   );
