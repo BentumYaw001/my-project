@@ -134,13 +134,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
               alt="Save Icon" />
             Save Changes
           </button>
-          <button
-            onClick={toggleTheme} // Add theme toggle button
-            id="themeToggleBtn"
-            className="ml-2 items-center text-white flex flex-row bg-customRed p-2 rounded-sm mr-4 hover:bg-customredhover"
-          >
-            {isDarkTheme ? 'Light Theme' : 'Dark Theme'}
-          </button>
+        
         </div>
       </nav>
       <div className={`fixed inset-0 z-50 transition-transform transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} bg-gray-900 bg-opacity-75`}>
@@ -191,13 +185,23 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
                 {document.name}  
                 </div>
                
-                </div>
+                 </div>
                 
                   </div>
                 
                 </li>
+
+                
               ))}
             </ul>
+
+            <button
+            onClick={toggleTheme} // Add theme toggle button
+            id="themeToggleBtn"
+            className="ml-2 items-center text-white flex flex-row bg-customRed p-2 rounded-sm mr-4 hover:bg-customredhover"
+          >
+            {isDarkTheme ? 'Light Theme' : 'Dark Theme'}
+          </button>
           </div>
         </div>
       </div>
