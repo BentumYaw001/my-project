@@ -97,35 +97,33 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
           {!isSmartphone && !isTablet && (
             <span className="border-l border-white mx-4 h-10" />
           )}
-          {!isSmartphone && !isTablet && (
-            <div className="flex flex-row justify-center ml-5">
-              <img
-                src="/src/assets/icon-document.svg"
-                alt="Document Icon"
-                className="h-5 w-4 my-auto" />
-              <div className="text-gray-400 text-lg font-semibold items-center ml-5 flex-col justify-center">
-                <p>Document Name</p>
-                {isEditing ? (
-                  <div className="flex items-center">
-                    <input
-                      type="text"
-                      value={tempName}
-                      onChange={handleInputChange}
-                      onBlur={handleSave}
-                      autoFocus
-                      className="bg-transparent text-white focus:outline-none focus:border-b border-white caret-red-500 cursor-pointer" />
-                  </div>
-                ) : (
-                  <p
-                    className="text-white cursor-pointer"
-                    onClick={() => setIsEditing(true)}
-                  >
-                    {documentName}
-                  </p>
-                )}
-              </div>
+          <div className="flex flex-row justify-center ml-5">
+            <img
+              src="/src/assets/icon-document.svg"
+              alt="Document Icon"
+              className="h-5 w-4 my-auto" />
+            <div className="text-gray-400 text-lg font-semibold items-center ml-5 flex-col justify-center">
+              {!isSmartphone && <p>Document Name</p>}
+              {isEditing ? (
+                <div className="flex items-center">
+                  <input
+                    type="text"
+                    value={tempName}
+                    onChange={handleInputChange}
+                    onBlur={handleSave}
+                    autoFocus
+                    className="bg-transparent text-white focus:outline-none focus:border-b border-white caret-red-500 cursor-pointer" />
+                </div>
+              ) : (
+                <p
+                  className="text-white cursor-pointer"
+                  onClick={() => setIsEditing(true)}
+                >
+                  {documentName}
+                </p>
+              )}
             </div>
-          )}
+          </div>
         </div>
         <div className="flex flex-row items-center">
           <button
