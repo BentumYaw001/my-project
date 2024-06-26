@@ -9,6 +9,9 @@ export default {
       fontSize: {
         'between-xs-sm': '0.8rem', 
       },
+      screens: {
+        'custom-md': '769px',
+      },
       colors: {
         customRed: '#E46643',
         customredhover:'#F39765',
