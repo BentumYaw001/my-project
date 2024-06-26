@@ -9,6 +9,7 @@ function App() {
   const [currentDocument, setCurrentDocument] = useState(null);
   const [markdown, setMarkdown] = useState('');
   const [isEditorVisible, setIsEditorVisible] = useState(true);
+  const [isPreviewVisible, setIsPreviewVisible] = useState(true);
   const [isDarkTheme, setIsDarkTheme] = useState(true);
 
   useEffect(() => {
@@ -39,9 +40,11 @@ function App() {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 768) {
-        setIsEditorVisible(false);
+        setIsEditorVisible(true);
+        setIsPreviewVisible(false);
       } else {
         setIsEditorVisible(true);
+        setIsPreviewVisible(true);
       }
     };
 
@@ -53,6 +56,7 @@ function App() {
 
   const toggleEditorVisibility = () => {
     setIsEditorVisible(!isEditorVisible);
+    setIsPreviewVisible(!isPreviewVisible);
   };
 
   const generateUniqueName = (baseName) => {
@@ -143,8 +147,8 @@ function App() {
         isDarkTheme={isDarkTheme}
       />
       <main className={`w-screen h-screen ${isEditorVisible ? 'grid grid-cols-2' : 'flex justify-center items-center'} ${isDarkTheme ? 'bg-mainblack' : 'bg-white'}`}>
-        {isEditorVisible && <Editor markdown={markdown} setMarkdown={setMarkdown} isDarkTheme={isDarkTheme} />}
-        <Preview markdown={markdown} toggleEditorVisibility={toggleEditorVisibility} isEditorVisible={isEditorVisible} isDarkTheme={isDarkTheme} />
+        {isEditorVisible && <Editor markdown={markdown} setMarkdown={setMarkdown} isDarkTheme={isDarkTheme} toggleEditorVisibility={toggleEditorVisibility} />}
+        {isPreviewVisible && <Preview markdown={markdown} toggleEditorVisibility={toggleEditorVisibility} isEditorVisible={isEditorVisible} isDarkTheme={isDarkTheme} />}
       </main>
     </div>
   );
