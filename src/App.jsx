@@ -36,6 +36,21 @@ function App() {
     }
   }, [isDarkTheme]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setIsEditorVisible(false);
+      } else {
+        setIsEditorVisible(true);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const toggleEditorVisibility = () => {
     setIsEditorVisible(!isEditorVisible);
   };
