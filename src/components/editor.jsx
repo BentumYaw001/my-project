@@ -5,7 +5,7 @@ import "./customScrollbar.css";
 // eslint-disable-next-line react/prop-types
 function Editor({ markdown, setMarkdown, isDarkTheme, toggleEditorVisibility }) {
   return (
-    <div className={`custom-md:border-r-2 custom-md:h-full custom-md:items-center ${isDarkTheme ? 'border-gray-600' : 'border-gray-300'}`}>
+    <div className={`custom-md:border-r-2 ${isDarkTheme ? 'border-gray-600' : 'border-gray-300'}`}>
       <div className={`w-full p-3 uppercase tracking-wider ${isDarkTheme ? 'bg-customblack1 text-gray-400' : 'bg-gray-200 text-gray-800'} flex justify-between`}>
         Markdown
         <button 
