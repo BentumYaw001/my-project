@@ -29,7 +29,7 @@ export default {
         invert: {
           css: {
             '--tw-prose-body': theme('colors.gray.300'),
-            '--tw-prose-headings': '#FFFFFF',
+            
             '--tw-prose-lead': theme('colors.gray.400'),
             '--tw-prose-links': theme('colors.white'),
             '--tw-prose-bold': theme('colors.white'),
@@ -45,7 +45,6 @@ export default {
             '--tw-prose-th-borders': theme('colors.gray.800'),
             '--tw-prose-td-borders': theme('colors.gray.700'),
             '--tw-prose-invert-body': theme('colors.gray.300'),
-            '--tw-prose-invert-headings': theme('colors.white'),
             '--tw-prose-invert-lead': theme('colors.gray.400'),
             '--tw-prose-invert-links': theme('colors.white'),
             '--tw-prose-invert-bold': theme('colors.white'),
@@ -64,6 +63,7 @@ export default {
             'h6': {
               color: '#E46643',
             },
+            
             // Custom styles for bullets in list items
             'ul > li::before': {
               backgroundColor: '#E46643',

@@ -1,13 +1,29 @@
 import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
+import axios from "axios";
 
 const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument, deleteDocument, toggleTheme, isDarkTheme }) => {
-  const [documentName, setDocumentName] = useState("welcome.md");
+  const [documentName, setDocumentName] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
-  const [tempName, setTempName] = useState(documentName);
+  const [tempName, setTempName] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSmartphone, setIsSmartphone] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/documents')
+      .then(response => {
+        setTempName(response.data);
+        const document = response.data.find(doc => doc.id === 2);
+        if (document) {
+          setTempName(document);
+          setDocumentName(document.name);
+        }
+      })
+      .catch(error => {
+        console.error('Error loading documents:', error);
+      });
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
