@@ -56,12 +56,9 @@ function App() {
 
   const toggleEditorVisibility = () => {
     setIsEditorVisible(!isEditorVisible);
-    
     if (window.innerWidth <= 768) {
       setIsPreviewVisible(!isPreviewVisible);
     }
-
-   
   };
 
   const generateUniqueName = (baseName) => {
@@ -151,9 +148,9 @@ function App() {
         toggleTheme={toggleTheme}
         isDarkTheme={isDarkTheme}
       />
-      <main className={`w-screen h-screen ${isEditorVisible ? 'grid grid-cols-2' : 'flex justify-center items-center'} ${isDarkTheme ? 'bg-mainblack' : 'bg-white'} `}>
-        {isEditorVisible && <Editor markdown={markdown} setMarkdown={setMarkdown} isDarkTheme={isDarkTheme} toggleEditorVisibility={toggleEditorVisibility} />}
-        {isPreviewVisible && <Preview markdown={markdown} toggleEditorVisibility={toggleEditorVisibility} isEditorVisible={isEditorVisible} isDarkTheme={isDarkTheme} />}
+      <main className={`w-screen h-screen ${isDarkTheme ? 'bg-mainblack' : 'bg-white'} ${isEditorVisible && isPreviewVisible ? 'grid grid-cols-2' : 'flex justify-center items-center'} flex-col md:flex-row`}>
+        {isEditorVisible && <Editor markdown={markdown} setMarkdown={setMarkdown} isDarkTheme={isDarkTheme} toggleEditorVisibility={toggleEditorVisibility} className="w-full h-full" />}
+        {isPreviewVisible && <Preview markdown={markdown} toggleEditorVisibility={toggleEditorVisibility} isEditorVisible={isEditorVisible} isDarkTheme={isDarkTheme} className="w-full h-full" />}
       </main>
     </div>
   );

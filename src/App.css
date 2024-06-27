@@ -52,4 +52,22 @@ body {
       display: none;
     }
   }
+
+  .w-full {
+    width: 100%;
+  }
   
+  .h-full {
+    height: 100%;
+  }
+  
+  .flex-col {
+    flex-direction: column;
+  }
+  
+
+  @media (min-width: 768px) {
+    .flex-row {
+      flex-direction: row;
+    }
+  }
