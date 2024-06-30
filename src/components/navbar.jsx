@@ -16,7 +16,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
         setTempName(response.data);
         const document = response.data.find(doc => doc.id === 2);
         if (document) {
-          setTempName(document);
+          setTempName(document.name);
           setDocumentName(document.name);
         }
       })
@@ -125,9 +125,11 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
                   <input
                     type="text"
                     value={tempName}
-                    onChange={handleInputChange}
+                    onChange={handleInputChange
+                    }
                     onBlur={handleSave}
                     autoFocus
+                    
                     className="bg-transparent text-white focus:outline-none focus:border-b border-white caret-red-500 cursor-pointer" />
                 </div>
               ) : (
@@ -208,8 +210,8 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
                   className="p-2 cursor-pointer"
                   onClick={() => {
                     loadDocumentContent(document.id);
-                    setDocumentName(document.name); // Update the document name when loaded
-                    setTempName(document.name); // Ensure tempName is also updated
+                    setDocumentName(document.name); 
+                    setTempName(document.name); 
                     handleCloseSidebar();
                   }}
                 >

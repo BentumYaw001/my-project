@@ -30,7 +30,7 @@ function Editor({ markdown, setMarkdown, isDarkTheme, toggleEditorVisibility }) 
         </button>
       </div>
       <textarea
-        className={`custom-scrollbar p-3 w-full h-full ${isDarkTheme ? 'bg-mainblack text-white' : 'bg-white text-black'}`}
+        className={`custom-scrollbar p-3 w-full h-full outline-none ${isDarkTheme ? 'bg-mainblack text-white' : 'bg-white text-black'}`}
         value={markdown}
         onChange={(e) => setMarkdown(e.target.value)}
       />
