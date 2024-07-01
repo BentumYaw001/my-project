@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
@@ -73,9 +74,8 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
     setDocumentName(newName);
     setIsEditing(false);
     if (currentDocument) {
-      updateDocumentName(currentDocument.id, newName); // Update the document name in the data.json file
-      saveDocument(); // Save the document using the passed prop function
-      setIsSaveModalOpen(true); // Open save confirmation modal after saving
+      updateDocumentName(currentDocument.id, newName); 
+      saveDocument(); 
     }
   };
 
@@ -233,7 +233,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
             left: '50%',
             right: 'auto',
             bottom: 'auto',
-            width:'350px',
+            width:'400px',
             marginRight: '-50%',
             transform: 'translate(-50%, -50%)',
             backgroundColor: 'white',
@@ -244,11 +244,10 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
           },
         }}
       >
-        <h2 className=" mb-2 font-bold ">Delete this document?
+        <h2 className=" mb-1 font-bold ">Delete this document?
 </h2>
-<p className="flex p-1 mb-3">Are you sure you want to delete the 
- document and its contents? 
-This action cannot be reversed.</p>
+<p className="flex p-1 mb-2 font-san">Are you sure you want to delete the <br/>'{tempName}.md' document and its contents?  
+<br />This action cannot be reversed.</p>
         <div className="flex justify-center">
           <button
             className="bg-customRed text-white py-2 px-4 rounded mr-1 w-full hover:bg-customredhover"
