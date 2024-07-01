@@ -32,7 +32,7 @@ export default {
           css: {
             color: theme('colors.black'), // Set text color to black
             'h1, h2, h3, h4, h5': {
-              color: theme('colors.black'), // Set header colors to black
+              color: '#2B2D31', // Set header colors to black
             },
       'pre': {
         backgroundColor: '#C1C4CB', // Set background color of code blocks to white
