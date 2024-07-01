@@ -1,6 +1,8 @@
-import { useState, useEffect } from "react";
+/* eslint-disable no-unused-vars */
+import React, { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 import axios from "axios";
+import Modal from 'react-modal'; // Import react-modal
 
 const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument, deleteDocument, toggleTheme, isDarkTheme }) => {
   const [documentName, setDocumentName] = useState('');
@@ -10,6 +12,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
   const [isSmartphone, setIsSmartphone] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
   const [currentDocument, setCurrentDocument] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
 
   useEffect(() => {
     axios.get('http://localhost:3001/documents')
@@ -70,6 +73,8 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
     setIsEditing(false);
     if (currentDocument) {
       updateDocumentName(currentDocument.id, newName); // Update the document name in the data.json file
+      saveDocument(); // Save the document using the passed prop function
+      setIsModalOpen(true); // Open modal after saving
     }
   };
 
@@ -83,11 +88,6 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
 
   const NewDocument = () => {
     loadNewDocument();
-  };
-
-  const SaveDocument = () => {
-    saveDocument();
-    alert('Document saved.');
   };
 
   const DeleteDocument = () => {
@@ -158,9 +158,9 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
           </button>
           {!isSmartphone && (
             <button
-              onClick={SaveDocument}
               id="saveDocBtn"
               className="ml-2 items-center text-white flex flex-row bg-customRed p-2 rounded-sm mr-4 hover:bg-customredhover"
+              onClick={handleSave}
             >
               <img
                 src="/src/assets/icon-save.svg"
@@ -171,9 +171,9 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
           )}
           {isSmartphone && (
             <button
-              onClick={SaveDocument}
               id="saveDocBtn"
               className="ml-2 items-center text-white flex flex-row bg-customRed p-2 rounded-sm mr-4 hover:bg-customredhover"
+              onClick={handleSave}
             >
               <img
                 src="/src/assets/icon-save.svg"
@@ -183,6 +183,39 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
           )}
         </div>
       </nav>
+
+      {/* Modal for Save Confirmation */}
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={() => setIsModalOpen(false)}
+        style={{
+          overlay: {
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          },
+          content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+            backgroundColor: 'white',
+            padding: '2rem',
+            borderRadius: '0.5rem',
+            border: '1px solid #ccc',
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+          },
+        }}
+      >
+        <h2 className="text-center mb-4">Document saved!</h2>
+        <button
+          onClick={() => setIsModalOpen(false)}
+          className="bg-customRed text-white px-4 py-2 rounded-sm hover:bg-customredhover"
+        >
+          Close
+        </button>
+      </Modal>
+
       <div className={`fixed inset-0 z-50 transition-transform transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} bg-gray-900 bg-opacity-75`}>
         <div className="w-64 bg-mainblack h-full p-4 flex flex-col justify-between">
           <div>
