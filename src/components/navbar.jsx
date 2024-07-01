@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import axios from "axios";
 
 const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument, deleteDocument, toggleTheme, isDarkTheme }) => {
-  const [documentName, setDocumentName] = useState([]);
+  const [documentName, setDocumentName] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [tempName, setTempName] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isSmartphone, setIsSmartphone] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
+  const [currentDocument, setCurrentDocument] = useState(null);
 
   useEffect(() => {
     axios.get('http://localhost:3001/documents')
@@ -18,6 +19,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
         if (document) {
           setTempName(document.name);
           setDocumentName(document.name);
+          setCurrentDocument(document); // Set current document
         }
       })
       .catch(error => {
@@ -66,7 +68,6 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
     }
     setDocumentName(newName);
     setIsEditing(false);
-    const currentDocument = documents.find(doc => doc.name === documentName);
     if (currentDocument) {
       updateDocumentName(currentDocument.id, newName); // Update the document name in the data.json file
     }
@@ -125,11 +126,9 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
                   <input
                     type="text"
                     value={tempName}
-                    onChange={handleInputChange
-                    }
+                    onChange={handleInputChange}
                     onBlur={handleSave}
                     autoFocus
-                    
                     className="bg-transparent text-white focus:outline-none focus:border-b border-white caret-red-500 cursor-pointer" />
                 </div>
               ) : (
@@ -212,6 +211,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
                     loadDocumentContent(document.id);
                     setDocumentName(document.name); 
                     setTempName(document.name); 
+                    setCurrentDocument(document); // Set current document
                     handleCloseSidebar();
                   }}
                 >
@@ -225,7 +225,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
                         {document.createdAt}
                       </div>
                       <div className="hover:text-customRed">
-                        {document.name}
+                        {currentDocument && document.id === currentDocument.id ? tempName : document.name}
                       </div>
                     </div>
                   </div>
