@@ -12,7 +12,8 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
   const [isSmartphone, setIsSmartphone] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
   const [currentDocument, setCurrentDocument] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
+  const [isSaveModalOpen, setIsSaveModalOpen] = useState(false); // State for save confirmation modal
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); // State for delete confirmation modal
 
   useEffect(() => {
     axios.get('http://localhost:3001/documents')
@@ -74,7 +75,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
     if (currentDocument) {
       updateDocumentName(currentDocument.id, newName); // Update the document name in the data.json file
       saveDocument(); // Save the document using the passed prop function
-      setIsModalOpen(true); // Open modal after saving
+      setIsSaveModalOpen(true); // Open save confirmation modal after saving
     }
   };
 
@@ -90,10 +91,13 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
     loadNewDocument();
   };
 
+  const handleDelete = () => {
+    deleteDocument();
+    setIsDeleteModalOpen(false); // Close delete confirmation modal after deleting
+  };
+
   const DeleteDocument = () => {
-    if (window.confirm("Are you sure you want to delete this document?")) {
-      deleteDocument();
-    }
+    setIsDeleteModalOpen(true); // Open delete confirmation modal
   };
 
   return (
@@ -186,8 +190,8 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
 
       {/* Modal for Save Confirmation */}
       <Modal
-        isOpen={isModalOpen}
-        onRequestClose={() => setIsModalOpen(false)}
+        isOpen={isSaveModalOpen}
+        onRequestClose={() => setIsSaveModalOpen(false)}
         style={{
           overlay: {
             backgroundColor: 'rgba(0, 0, 0, 0.5)',
@@ -207,13 +211,53 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
           },
         }}
       >
-        <h2 className="text-center mb-4">Document saved!</h2>
+        <h2 className="text-center mb-4">Document saved successfully!</h2>
         <button
-          onClick={() => setIsModalOpen(false)}
-          className="bg-customRed text-white px-4 py-2 rounded-sm hover:bg-customredhover"
+          className="bg-customRed text-white py-2 px-4 rounded hover:bg-customredhover"
+          onClick={() => setIsSaveModalOpen(false)}
         >
           Close
         </button>
+      </Modal>
+
+      {/* Modal for Delete Confirmation */}
+      <Modal
+        isOpen={isDeleteModalOpen}
+        onRequestClose={() => setIsDeleteModalOpen(false)}
+        style={{
+          overlay: {
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          },
+          content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+            backgroundColor: 'white',
+            padding: '2rem',
+            borderRadius: '0.5rem',
+            border: '1px solid #ccc',
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+          },
+        }}
+      >
+        <h2 className="text-center mb-4">Are you sure you want to delete this document?</h2>
+        <div className="flex justify-center">
+          <button
+            className="bg-customRed text-white py-2 px-4 rounded mr-2 hover:bg-customredhover"
+            onClick={handleDelete}
+          >
+            Yes, delete it
+          </button>
+          <button
+            className="bg-gray-300 text-black py-2 px-4 rounded hover:bg-gray-400"
+            onClick={() => setIsDeleteModalOpen(false)}
+          >
+            Cancel
+          </button>
+        </div>
       </Modal>
 
       <div className={`fixed inset-0 z-50 transition-transform transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} bg-gray-900 bg-opacity-75`}>
