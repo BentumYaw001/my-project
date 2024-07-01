@@ -27,6 +27,24 @@ export default {
       },
 
       typography: (theme) => ({
+
+        light: {
+          css: {
+            color: theme('colors.black'), // Set text color to black
+            'h1, h2, h3, h4, h5, h6': {
+              color: theme('colors.black'), // Set header colors to black
+            },
+      'pre': {
+        backgroundColor: '#C1C4CB', // Set background color of code blocks to white
+        color: theme('colors.black'), // Set text color of code blocks to black
+      },
+          },
+          'blockquote': {
+            backgroundColor:theme('colors.black'), // Set background color of code blocks to white
+            color: theme('colors.black'),// Set border left color of blockquote
+        fontStyle: 'normal', // Ensure normal font style for blockquote
+      },
+        },
         invert: {
           css: {
             '--tw-prose-body': theme('colors.gray.300'),
@@ -34,7 +52,7 @@ export default {
             '--tw-prose-links': theme('colors.white'),
             '--tw-prose-bold': theme('colors.white'),
             '--tw-prose-counters': theme('colors.gray.500'),
-            '--tw-prose-bullets': '#E46643', // List bullets remain the same color
+            '--tw-prose-bullets': '#E46643', 
             '--tw-prose-hr': theme('colors.gray.500'),
             '--tw-prose-quotes': theme('colors.gray.400'),
             '--tw-prose-quote-borders': '#E46643',
@@ -49,7 +67,7 @@ export default {
             '--tw-prose-invert-lead': theme('colors.gray.400'),
             '--tw-prose-invert-links': theme('colors.white'),
             '--tw-prose-invert-bold': theme('colors.white'),
-            '--tw-prose-invert-headers': theme('colors.'),
+            '--tw-prose-invert-header':'#000000',
             '--tw-prose-invert-counters': theme('colors.gray.500'),
             '--tw-prose-invert-bullets': '#E46643', // List bullets remain the same color
             '--tw-prose-invert-hr': theme('colors.gray.500'),
@@ -62,11 +80,11 @@ export default {
             '--tw-prose-invert-th-borders': theme('colors.gray.700'),
             '--tw-prose-invert-td-borders': theme('colors.gray.700'),
             'h6': {
-              color: '#E46643', // h6 remain the same color
+              color: '#E46643', 
             },
            
             'blockquote': {
-              fontStyle: 'normal', // Remove italics from blockquotes
+              fontStyle: 'normal', 
             },
           },
         },

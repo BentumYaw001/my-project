@@ -30,7 +30,7 @@ function Preview({ markdown, toggleEditorVisibility, isEditorVisible, isDarkThem
         </button>
       </div>
       <div
-        className={`w-full flex-grow p-6 prose ${isDarkTheme ? 'prose-invert bg-mainblack' : 'bg-white text-black h1'} ${isEditorVisible ? '' : 'w-full'}`}
+        className={`w-full flex-grow p-6 prose prose-invert ${isDarkTheme ? ' bg-mainblack' : 'prose-light bg-white text-black h1'} ${isEditorVisible ? '' : 'w-full'}`}
         dangerouslySetInnerHTML={{ __html: parsed }}
       />
     </div>
