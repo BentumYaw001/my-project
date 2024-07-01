@@ -31,19 +31,22 @@ export default {
         light: {
           css: {
             color: theme('colors.black'), // Set text color to black
-            'h1, h2, h3, h4, h5, h6': {
+            'h1, h2, h3, h4, h5': {
               color: theme('colors.black'), // Set header colors to black
             },
       'pre': {
         backgroundColor: '#C1C4CB', // Set background color of code blocks to white
         color: theme('colors.black'), // Set text color of code blocks to black
       },
-          },
-          'blockquote': {
-            backgroundColor:theme('colors.black'), // Set background color of code blocks to white
-            color: theme('colors.black'),// Set border left color of blockquote
-        fontStyle: 'normal', // Ensure normal font style for blockquote
+      'blockquote': {
+        fontStyle: 'normal', 
+        backgroundColor:'#E4E4E4',
+        color:'#2B2D31',
+        padding: '0.3rem',
+        margin: '1rem 0',
+        borderRadius: '0.5rem'
       },
+          },
         },
         invert: {
           css: {
@@ -67,12 +70,11 @@ export default {
             '--tw-prose-invert-lead': theme('colors.gray.400'),
             '--tw-prose-invert-links': theme('colors.white'),
             '--tw-prose-invert-bold': theme('colors.white'),
-            '--tw-prose-invert-header':'#000000',
             '--tw-prose-invert-counters': theme('colors.gray.500'),
             '--tw-prose-invert-bullets': '#E46643', // List bullets remain the same color
             '--tw-prose-invert-hr': theme('colors.gray.500'),
             '--tw-prose-invert-quotes': theme('colors.gray.400'),
-            '--tw-prose-invert-quote-borders': '#E46643', // Blockquote borders
+            '--tw-prose-invert-quote-borders': '#E46643',
             '--tw-prose-invert-captions': theme('colors.gray.500'),
             '--tw-prose-invert-code': theme('colors.gray.400'),
             '--tw-prose-invert-pre-code': theme('colors.gray.800'),
@@ -85,6 +87,11 @@ export default {
            
             'blockquote': {
               fontStyle: 'normal', 
+              backgroundColor:'#2B2D31',
+              color:'#FFFFFF',
+              padding: '0.3rem',
+              margin: '1rem 0',
+              borderRadius: '0.5rem'
             },
           },
         },
