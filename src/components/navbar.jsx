@@ -211,12 +211,12 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
           },
         }}
       >
-        <h2 className="text-center mb-4">Document saved successfully!</h2>
+        <h2 className="text-center mb-4">Changes saved successfully!</h2>
         <button
-          className="bg-customRed text-white py-2 px-4 rounded hover:bg-customredhover"
+          className="bg-customRed text-white py-2 px-4 rounded w-full hover:bg-customredhover"
           onClick={() => setIsSaveModalOpen(false)}
         >
-          Close
+         OK
         </button>
       </Modal>
 
@@ -233,6 +233,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
             left: '50%',
             right: 'auto',
             bottom: 'auto',
+            width:'350px',
             marginRight: '-50%',
             transform: 'translate(-50%, -50%)',
             backgroundColor: 'white',
@@ -243,19 +244,17 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
           },
         }}
       >
-        <h2 className="text-center mb-4">Are you sure you want to delete this document?</h2>
+        <h2 className=" mb-2 font-bold ">Delete this document?
+</h2>
+<p className="flex p-1 mb-3">Are you sure you want to delete the 
+ document and its contents? 
+This action cannot be reversed.</p>
         <div className="flex justify-center">
           <button
-            className="bg-customRed text-white py-2 px-4 rounded mr-2 hover:bg-customredhover"
+            className="bg-customRed text-white py-2 px-4 rounded mr-1 w-full hover:bg-customredhover"
             onClick={handleDelete}
           >
-            Yes, delete it
-          </button>
-          <button
-            className="bg-gray-300 text-black py-2 px-4 rounded hover:bg-gray-400"
-            onClick={() => setIsDeleteModalOpen(false)}
-          >
-            Cancel
+          Confirm & Delete
           </button>
         </div>
       </Modal>
