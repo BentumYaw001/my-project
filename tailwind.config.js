@@ -46,6 +46,10 @@ export default {
         margin: '1rem 0',
         borderRadius: '0.5rem'
       },
+      'a': {
+        color: theme('colors.black'),
+        textDecoration: 'underline',
+      },
           },
         },
         invert: {
