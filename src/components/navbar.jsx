@@ -93,11 +93,13 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
 
   const handleDelete = () => {
     deleteDocument();
-    setIsDeleteModalOpen(false); // Close delete confirmation modal after deleting
+    setIsDeleteModalOpen(false); 
+    setCurrentDocument(document);
   };
 
   const DeleteDocument = () => {
-    setIsDeleteModalOpen(true); // Open delete confirmation modal
+    setIsDeleteModalOpen(true); 
+    setCurrentDocument(document);
   };
 
   return (
