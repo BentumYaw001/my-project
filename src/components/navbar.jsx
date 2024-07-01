@@ -240,7 +240,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
             transform: 'translate(-50%, -50%)',
             padding: '2rem',
             borderRadius: '0.5rem',
-            border: 'none', // Remove border
+            border: 'none',
             outline: 'none',
             boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
           },
