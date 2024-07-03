@@ -290,7 +290,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
                     loadDocumentContent(document.id);
                     setDocumentName(document.name); 
                     setTempName(document.name); 
-                    setCurrentDocument(document); // Set current document
+                    setCurrentDocument(document); 
                     handleCloseSidebar();
                   }}
                 >
