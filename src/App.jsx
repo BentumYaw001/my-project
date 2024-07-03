@@ -12,6 +12,7 @@ function App() {
   const [isPreviewVisible, setIsPreviewVisible] = useState(true);
   const [isDarkTheme, setIsDarkTheme] = useState(true);
 
+
   useEffect(() => {
     axios.get('http://localhost:3001/documents')
       .then(response => {
@@ -126,9 +127,11 @@ function App() {
           if (updatedDocuments.length > 0) {
             const currentIndex = documents.findIndex(doc => doc.id === currentDocument.id);
             if (currentIndex < updatedDocuments.length) {
-              newCurrentDocument = updatedDocuments[currentIndex]; // Next document
+              newCurrentDocument = updatedDocuments[(currentIndex)];
+
+            // Next document
             } else {
-              newCurrentDocument = updatedDocuments[currentIndex - 1]; // Previous document
+              newCurrentDocument = updatedDocuments[(currentIndex - 1)]; // Previous document
             }
           }
 

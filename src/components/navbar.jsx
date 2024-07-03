@@ -341,6 +341,7 @@ Navbar.propTypes = {
   deleteDocument: PropTypes.func.isRequired,
   toggleTheme: PropTypes.func.isRequired,
   isDarkTheme: PropTypes.bool.isRequired,
+  tempName:PropTypes.func.isRequired,
 };
 
 export default Navbar;
