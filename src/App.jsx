@@ -122,10 +122,26 @@ function App() {
           const updatedDocuments = documents.filter(doc => doc.id !== currentDocument.id);
           setDocuments(updatedDocuments);
 
+          let newCurrentDocument = null;
           if (updatedDocuments.length > 0) {
-            setCurrentDocument(updatedDocuments[0]);
-            setMarkdown(updatedDocuments[0].content);
+            const currentIndex = documents.findIndex(doc => doc.id === currentDocument.id);
+            if (currentIndex < updatedDocuments.length) {
+              newCurrentDocument = updatedDocuments[currentIndex]; // Next document
+            } else {
+              newCurrentDocument = updatedDocuments[currentIndex - 1]; // Previous document
+            }
           }
+
+          if (newCurrentDocument) {
+            setCurrentDocument(newCurrentDocument);
+            setMarkdown(newCurrentDocument.content);
+          } else {
+            setCurrentDocument(null);
+            setMarkdown('');
+          }
+
+          const tempName = currentDocument.name;
+          console.log(`Deleted document: ${tempName}`);
         })
         .catch(error => {
           console.error('Error deleting document:', error);
