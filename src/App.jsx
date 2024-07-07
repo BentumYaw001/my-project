@@ -17,7 +17,7 @@ function App() {
     axios.get('http://localhost:3001/documents')
       .then(response => {
         setDocuments(response.data);
-        const document = response.data.find(doc => doc.id === 2);
+        const document = response.data.find(doc => doc.id === 0);
         if (document) {
           setCurrentDocument(document);
           setMarkdown(document.content);

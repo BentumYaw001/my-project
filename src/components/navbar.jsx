@@ -20,7 +20,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
     axios.get('http://localhost:3001/documents')
       .then(response => {
         setTempName(response.data);
-        const document = response.data.find(doc => doc.id === 2);
+        const document = response.data.find(doc => doc.id === 0);
         if (document) {
           setTempName(document.name);
           setDocumentName(document.name);
