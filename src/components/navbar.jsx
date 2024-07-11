@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 import axios from "axios";
 import Modal from 'react-modal'; // Import react-modal
-
+import iconMenu from "../assets/icon-menu.svg"
 const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument, deleteDocument, toggleTheme, isDarkTheme }) => {
   const [documentName, setDocumentName] = useState('');
   const [isEditing, setIsEditing] = useState(false);
@@ -109,7 +109,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
           <div className="flex justify-center font-semibold text-white">
             <button id="openBtn" onClick={handleOpenSidebar}>
               <img
-                src="/src/assets/icon-menu.svg"
+                src={iconMenu}
                 className="mr-3 hover:bg-customRed py-5 px-4 bg-customblack3"
                 alt="Menu Icon" />
             </button>
