@@ -5,7 +5,17 @@ import PropTypes from 'prop-types';
 import axios from "axios";
 import Modal from 'react-modal'; // Import react-modal
 import iconMenu from "../assets/icon-menu.svg"
+import iconDocument from "../assets/icon-document.svg"
+import iconSave from "../assets/icon-save.svg"
+import toggleOff from "../assets/toggle-off.svg"
+import toggleOn from "../assets/toggle-on.svg"
+import lightMode from "../assets/light-mode.svg"
+import iconClose from "../assets/icon-close.svg"
+
+
+
 const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument, deleteDocument, toggleTheme, isDarkTheme }) => {
+
   const [documentName, setDocumentName] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [tempName, setTempName] = useState('');
@@ -122,7 +132,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
           )}
           <div className="flex flex-row justify-center ml-5">
             <img
-              src="/src/assets/icon-document.svg"
+              src={iconDocument}
               alt="Document Icon"
               className="h-5 w-4 my-auto" />
             <div className="text-gray-400 text-lg font-semibold items-center ml-5 flex-col justify-center">
@@ -169,7 +179,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
               onClick={handleSave}
             >
               <img
-                src="/src/assets/icon-save.svg"
+                src={iconSave}
                 className="mr-2"
                 alt="Save Icon" />
               {!isSmartphone && 'Save Changes'}
@@ -182,7 +192,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
               onClick={handleSave}
             >
               <img
-                src="/src/assets/icon-save.svg"
+                src={iconSave}
                 className="mr-2"
                 alt="Save Icon" />
             </button>
@@ -268,7 +278,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
             <div className="flex justify-end">
               <button id="closeBtn" onClick={handleCloseSidebar}>
                 <img
-                  src="/src/assets/icon-close.svg"
+                  src={iconClose}
                   className=""
                   alt="Close Icon" />
               </button>
@@ -296,7 +306,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
                 >
                   <div className="flex items-center">
                     <img
-                      src="/src/assets/icon-document.svg"
+                      src={iconDocument}
                       className="h-4 w-3 mr-2"
                       alt="New Document Icon" />
                     <div className="flex flex-col">
@@ -320,11 +330,11 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
             >
               <img src="/src/assets/dark-mode.svg" alt="Dark Mode Icon" />
               {isDarkTheme ? (
-                <img src="/src/assets/toggle-off.svg" alt="Toggle Off Icon" />
+                <img src={toggleOff} alt="Toggle Off Icon" />
               ) : (
-                <img src="/src/assets/toggle-on.svg" alt="Toggle On Icon" />
+                <img src={toggleOn} alt="Toggle On Icon" />
               )}
-              <img src="/src/assets/light-mode.svg" alt="Light Mode Icon" />
+              <img src={lightMode} alt="Light Mode Icon" />
             </button>
           </div>
         </div>
