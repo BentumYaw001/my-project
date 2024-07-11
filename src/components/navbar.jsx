@@ -11,6 +11,7 @@ import toggleOff from "../assets/toggle-off.svg"
 import toggleOn from "../assets/toggle-on.svg"
 import lightMode from "../assets/light-mode.svg"
 import iconClose from "../assets/icon-close.svg"
+import iconDark from "../assets/dark-mode.svg"
 
 
 
@@ -328,7 +329,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
               id="themeToggleBtn"
               className="text-white flex items-center p-2 rounded-sm"
             >
-              <img src="/src/assets/dark-mode.svg" alt="Dark Mode Icon" />
+              <img src={iconDark} alt="Dark Mode Icon" />
               {isDarkTheme ? (
                 <img src={toggleOff} alt="Toggle Off Icon" />
               ) : (
