@@ -28,7 +28,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); // State for delete confirmation modal
 
   useEffect(() => {
-    axios.get('http://localhost:3001/documents')
+    axios.get('https://backend-amalitech.onrender.com/documents')
       .then(response => {
         setTempName(response.data);
         const document = response.data.find(doc => doc.id === 0);

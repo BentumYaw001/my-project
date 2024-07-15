@@ -14,7 +14,7 @@ function App() {
 
 
   useEffect(() => {
-    axios.get('http://localhost:3001/documents')
+    axios.get('https://backend-amalitech.onrender.com/documents')
       .then(response => {
         setDocuments(response.data);
         const document = response.data.find(doc => doc.id === 0);
