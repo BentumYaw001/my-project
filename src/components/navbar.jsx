@@ -61,7 +61,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
 
   const updateDocumentName = async (id, newName) => {
     try {
-      const response = await fetch(`http://localhost:5000/documents/${id}/name`, {
+      const response = await fetch(`https://backend-amalitech.onrender.com/documents/${id}/name`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
