@@ -61,7 +61,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
 
   const updateDocumentName = async (id, newName) => {
     try {
-      const response = await fetch(`http://localhost:3001/documents/${id}/name`, {
+      const response = await fetch(`http://localhost:5000/documents/${id}/name`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -116,6 +116,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
   return (
     <>
       <nav className="bg-customblack2 flex items-center justify-between">
+      
         <div className="flex items-center">
           <div className="flex justify-center font-semibold text-white">
             <button id="openBtn" onClick={handleOpenSidebar}>
