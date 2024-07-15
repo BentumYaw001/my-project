@@ -4,14 +4,14 @@ import React, { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 import axios from "axios";
 import Modal from 'react-modal'; // Import react-modal
-import iconMenu from "../assets/icon-menu.svg"
-import iconDocument from "../assets/icon-document.svg"
-import iconSave from "../assets/icon-save.svg"
-import toggleOff from "../assets/toggle-off.svg"
-import toggleOn from "../assets/toggle-on.svg"
-import lightMode from "../assets/light-mode.svg"
-import iconClose from "../assets/icon-close.svg"
-import iconDark from "../assets/dark-mode.svg"
+import iconMenu from "../assets/icon-menu.svg";
+import iconDocument from "../assets/icon-document.svg";
+import iconSave from "../assets/icon-save.svg";
+import toggleOff from "../assets/toggle-off.svg";
+import toggleOn from "../assets/toggle-on.svg";
+import lightMode from "../assets/light-mode.svg";
+import iconClose from "../assets/icon-close.svg";
+import iconDark from "../assets/dark-mode.svg";
 
 
 
