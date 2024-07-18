@@ -12,6 +12,7 @@ import toggleOn from "../assets/toggle-on.svg";
 import lightMode from "../assets/light-mode.svg";
 import iconClose from "../assets/icon-close.svg";
 import iconDark from "../assets/dark-mode.svg";
+import "./customScrollbar.css";
 
 
 
@@ -293,7 +294,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
             >
               + New Document
             </button>
-            <ul className="text-white text-between-xs-sm items-center overflow-y-auto">
+            <ul className="text-white text-between-xs-sm items-center">
               {documents.map((document) => (
                 <li
                   key={document.id}
