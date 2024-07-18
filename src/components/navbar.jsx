@@ -28,7 +28,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); // State for delete confirmation modal
 
   useEffect(() => {
-    axios.get('https://backend-amalitech.onrender.com/documents')
+    axios.get('https://backend-1-wilh.onrender.com/documents')
       .then(response => {
         setTempName(response.data);
         const document = response.data.find(doc => doc.id === 0);
@@ -61,7 +61,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
 
   const updateDocumentName = async (id, newName) => {
     try {
-      const response = await fetch(`https://backend-amalitech.onrender.com/documents/${id}/name`, {
+      const response = await fetch(`https://backend-1-wilh.onrender.com/documents/${id}/name`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

@@ -12,9 +12,10 @@ function App() {
   const [isPreviewVisible, setIsPreviewVisible] = useState(true);
   const [isDarkTheme, setIsDarkTheme] = useState(true);
 
+  const primary_url = "https://backend-1-wilh.onrender.com"
 
   useEffect(() => {
-    axios.get('https://backend-amalitech.onrender.com/documents')
+    axios.get(`${primary_url}/documents`)
       .then(response => {
         setDocuments(response.data);
         const document = response.data.find(doc => doc.id === 0);
@@ -84,7 +85,7 @@ function App() {
     setCurrentDocument(newDocument);
     setMarkdown(newDocument.content);
 
-    axios.post('http://localhost:3001/documents', newDocument)
+    axios.post(`${primary_url}/documents`, newDocument)
       .then(response => {
         console.log(response.data);
       })
@@ -104,7 +105,7 @@ function App() {
   const saveDocument = () => {
     if (currentDocument) {
       const updatedDocument = { ...currentDocument, content: markdown };
-      axios.put(`http://localhost:3001/documents/${currentDocument.id}`, updatedDocument)
+      axios.put(`${primary_url}/documents/${currentDocument.id}`, updatedDocument)
         .then(response => {
           console.log(response.data);
           setDocuments(documents.map(doc => doc.id === currentDocument.id ? updatedDocument : doc));
@@ -117,7 +118,7 @@ function App() {
 
   const deleteDocument = () => {
     if (currentDocument) {
-      axios.delete(`http://localhost:3001/documents/${currentDocument.id}`)
+      axios.delete(`${primary_url}/documents/${currentDocument.id}`)
         .then(response => {
           console.log(response.data);
           const updatedDocuments = documents.filter(doc => doc.id !== currentDocument.id);
