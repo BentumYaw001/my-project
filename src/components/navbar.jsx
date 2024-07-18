@@ -294,7 +294,7 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
             >
               + New Document
             </button>
-            <ul className="text-white text-between-xs-sm items-center">
+            <ul className="text-white text-between-xs-sm items-center max-h-[550px] overflow-y-auto custom-scrollbar">
               {documents.map((document) => (
                 <li
                   key={document.id}
