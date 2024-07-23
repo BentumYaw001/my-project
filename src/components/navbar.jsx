@@ -67,12 +67,14 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name: newName }),
+        body: JSON.stringify({ name: documentName }),
       });
       if (!response.ok) {
         throw new Error('Failed to update document name');
       }
       console.log('Document name updated successfully');
+      const json =  await response.json()
+      console.log(json)
     } catch (error) {
       console.error('Error updating document name:', error);
     }
@@ -84,10 +86,11 @@ const Navbar = ({ documents, loadNewDocument, loadDocumentContent, saveDocument,
       newName += ".md";
     }
     setDocumentName(newName);
+    console.log(documentName)
     setIsEditing(false);
     if (currentDocument) {
       updateDocumentName(currentDocument.id, newName); 
-      saveDocument(); 
+      saveDocument(documentName); 
     }
   };
 

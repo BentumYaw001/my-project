@@ -102,9 +102,10 @@ function App() {
     }
   };
 
-  const saveDocument = () => {
+  const saveDocument = (name) => {
     if (currentDocument) {
-      const updatedDocument = { ...currentDocument, content: markdown };
+      const updatedDocument = { ...currentDocument, content: markdown , name };
+      console.log(updatedDocument)
       axios.put(`${primary_url}/documents/${currentDocument.id}`, updatedDocument)
         .then(response => {
           console.log(response.data);

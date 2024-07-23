@@ -26,6 +26,7 @@ app.get('/documents', (req, res) => {
   });
 });
 
+
 // Endpoint to add a new document
 app.post('/documents', (req, res) => {
   const newDocument = req.body;
